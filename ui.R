@@ -11,8 +11,10 @@ shinyUI(fluidPage(
       ),    
     #For now we are just testing to see if each element in a list can be accessed.
     mainPanel(
-      plotOutput("plot"),
-      textOutput("text1")
+      plotOutput('plot'),
+      tableOutput('contents'),
+      textOutput('text1'),
+      textOutput('text2')
       )
   )
   ))
