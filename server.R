@@ -1,8 +1,11 @@
 #Still not reactive yet.
 
 shinyServer(function(input,output){
+        
         output$plot<-renderPlot({
           inFile<-input$file
+          if (is.null(inFile))
+            return(NULL)
           hist(as.numeric(read.csv(inFile$datapath,head=FALSE)[,2]),main="Tadaa")
         })
              
@@ -26,7 +29,9 @@ shinyServer(function(input,output){
           "Hello, this is where you showcase the part where you read the tickers from a list."
         })
         output$text2<-renderText({
-          paste("The numbers are",input$file[3,2])
+          inFile<-input$file
+          #paste works but it is messy.
+          paste("The ticker",read.csv(inFile$datapath,head=FALSE)[,1],"has a weight of",read.csv(inFile$datapath,head=FALSE)[,2],"in the portfolio.")
         })
         
 })
